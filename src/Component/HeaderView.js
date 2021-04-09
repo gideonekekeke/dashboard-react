@@ -22,7 +22,6 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
 import { Button } from "antd";
 import Rental from "../Component/View/Rental";
-import { useHistory } from "react-router-dom";
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -125,8 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MaterialDash() {
-  const hist = useHistory();
+function HeaderView() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -139,11 +137,11 @@ function MaterialDash() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
+        <CssBaseline />
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -175,76 +173,8 @@ function MaterialDash() {
           </Button>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon style={{ color: "red" }} />
-          </IconButton>
-        </div>
-        <Divider />
-
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          <Button
-            onClick={() => {
-              hist.push("/upload");
-            }}
-            style={{
-              height: "60px",
-              width: "150px",
-              borderRadius: "5px",
-              margin: "10px",
-            }}
-          >
-            {" "}
-            Upload Single Room
-          </Button>
-          <Button
-            style={{
-              height: "60px",
-              width: "150px",
-              borderRadius: "5px",
-              margin: "10px",
-            }}
-          >
-            {" "}
-            Upload Shop/ Store
-          </Button>
-          <Button
-            style={{
-              height: "60px",
-              width: "150px",
-              borderRadius: "5px",
-              margin: "10px",
-            }}
-          >
-            {" "}
-            Upload Flat
-          </Button>
-          <br />
-          <Rental />
-        </div>
-      </main>
     </div>
   );
 }
 
-export default MaterialDash;
+export default HeaderView;
